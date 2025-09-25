@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hometown — Bandung</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <a class="brand" href="../index.html">
+          <div class="brand-logo"></div>
+          <span class="brand-title">Bandung · Personal Site</span>
+        </a>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../profile/index.html">Profile</a></li>
+            <li><a href="../hometown/index.html">Hometown</a></li>
+            <li><a href="../food/index.html">Local Food</a></li>
+            <li><a href="../tourist/index.html">Tourist Places</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="breadcrumbs"><a href="../index.html">Home</a> / Hometown</div>
+
+      <section class="feature">
+        <figure class="feature-media">
+          <img src="../image/bandung.webp" alt="Alun-alun Bandung" />
+          <figcaption>
+            <h2>Bandung, West Java</h2>
+            <p class="lead">
+              Bandung, the highland capital of West Java, sits in a volcanic
+              basin at elevations from 700 to 760 meters, giving it cool air,
+              leafy neighborhoods, and ridgelines that frame a skyline rich in
+              early modern architecture. The historic core centers on Asia
+              Afrika and Braga Streets, corridors of Art Deco and Dutch
+              modernism, and is anchored by landmarks such as Gedung Merdeka,
+              site of the 1955 Asian African Conference, Gedung Sate with its
+              iconic “satay skewer” finial, the Savoy Homann and Grand Hotel
+              Preanger, the Geological Museum from 1928, the garden city ITB
+              campus, and hilltop Villa Isola. Dutch planning introduced wide
+              boulevards, arcaded sidewalks, and a strong rail corridor, while
+              Indonesia’s independence struggle added the dramatic chapter of
+              the 1946 Bandung Lautan Api, when residents burned and evacuated
+              parts of the city to deny their use to colonial forces. Today,
+              Bandung blends youthful university energy with layered heritage,
+              where walkable historic streets, civic spaces like Gasibu Field
+              and City Hall, and villa style northern districts form a living
+              archive of twentieth century urban history against a cool mountain
+              backdrop.
+            </p>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="grid">
+        <article class="card reveal reveal-1">
+          <h3>Geography</h3>
+          <p>
+            Bandung lies in a highland basin encircled by volcanic hills in West
+            Java, about 700 to 760 meters above sea level. The city spreads from
+            a historic core along Asia Afrika and Braga toward northern slopes
+            like Dago, with rivers such as Cikapundung cutting through the urban
+            fabric.
+          </p>
+        </article>
+        <article class="card reveal reveal-2">
+          <h3>Climate</h3>
+          <p>
+            The elevation gives Bandung a mild tropical highland climate with
+            cooler temperatures than coastal Java, warm afternoons, and crisp
+            mornings and evenings. Rain is heaviest from about November to
+            April, while the midyear months are generally drier.
+          </p>
+        </article>
+        <article class="card reveal reveal-3">
+          <h3>Culture</h3>
+          <p>
+            andung mixes Sundanese traditions with a strong modern creative
+            scene shaped by universities and design schools. Art deco heritage,
+            music, fashion, and community arts festivals remain prominent, and
+            everyday culture emphasizes friendliness, student life, and pride in
+            the city’s role in Indonesia’s independence and the 1955 Asian
+            African Conference.
+          </p>
+        </article>
+      </section>
+      <section class="grid">
+        <article class="card reveal-up">...</article>
+        <article class="card reveal-up">...</article>
+        <article class="card reveal-up">...</article>
+      </section>
+    </main>
+    <script>
+      (function () {
+        const sec = document.querySelector('.feature[data-anim="hometown"]');
+        if (!sec) return;
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                sec.classList.add("in"); // picu animasi
+                io.unobserve(sec);
+              }
+            });
+          },
+          { threshold: 0.22 }
+        ); // mulai saat ~22% terlihat
+
+        io.observe(sec);
+      })();
+    </script>
+
+    <footer>Quiz 1 Web Programming © 2025</footer>
+  </body>
+</html>
