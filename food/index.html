@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Local Food — Bandung</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+  </head>
+  <body class="page-food">
+    <!-- HEADER (jangan ada <header> di dalam <header>) -->
+    <header>
+      <div class="nav">
+        <a class="brand" href="../index.html">
+          <div class="brand-logo"></div>
+          <span class="brand-title">Muhammad Ilyas Rusdi · 5025241007</span>
+        </a>
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../profile/index.html">Profile</a></li>
+            <li><a href="../hometown/index.html">Hometown</a></li>
+            <li><a href="../food/index.html" class="active">Local Food</a></li>
+            <li><a href="../tourist/index.html">Tourist Places</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- SPACER: khusus halaman ini supaya tidak nempel navbar -->
+    <div class="nav-spacer"></div>
+
+    <main class="container">
+      <div class="breadcrumbs">
+        <a href="../index.html">Home</a> / Local Food
+      </div>
+
+      <!-- MARQUEE: 1 baris horizontal berjalan -->
+      <section class="food-scroll">
+        <div class="food-track">
+          <!-- ===== SET 1 ===== -->
+          <article class="food-card">
+            <img src="../image/batagor.jpeg" alt="Batagor" />
+            <div class="food-card-content">
+              <h3>Batagor</h3>
+              <p>Fried tofu & fish dumplings with rich peanut sauce.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img src="../image/siomay.jpeg" alt="Siomay" />
+            <div class="food-card-content">
+              <h3>Siomay</h3>
+              <p>Steamed fish dumplings served with peanut sauce.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img src="../image/surabi.webp" alt="Surabi" />
+            <div class="food-card-content">
+              <h3>Surabi</h3>
+              <p>Traditional pancake sweet or savoury toppings.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img src="../image/seblak.webp" alt="Seblak" />
+            <div class="food-card-content">
+              <h3>Seblak</h3>
+              <p>Spicy-soft crackers with toppings, choose your heat.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img src="../image/cilok.jpeg" alt="Cilok" />
+            <div class="food-card-content">
+              <h3>Cilok</h3>
+              <p>Chewy tapioca balls; simple, iconic street snack.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img src="../image/peyeum.jpeg" alt="Peuyeum" />
+            <div class="food-card-content">
+              <h3>Peuyeum</h3>
+              <p>Fermented cassava sweet and aromatic.</p>
+            </div>
+          </article>
+
+          <!-- ===== SET 2 (duplikasi untuk loop mulus) ===== -->
+          <article class="food-card">
+            <img src="../image/batagor.jpeg" alt="Batagor" />
+            <div class="food-card-content">
+              <h3>Batagor</h3>
+              <p>Fried tofu & fish dumplings with rich peanut sauce.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img src="../image/siomay.jpeg" alt="Siomay" />
+            <div class="food-card-content">
+              <h3>Siomay</h3>
+              <p>Steamed fish dumplings served with peanut sauce.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img src="../image/surabi.webp" alt="Surabi" />
+            <div class="food-card-content">
+              <h3>Surabi</h3>
+              <p>Traditional pancake sweet or savoury toppings.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img src="../image/seblak.webp" alt="Seblak" />
+            <div class="food-card-content">
+              <h3>Seblak</h3>
+              <p>Spicy-soft crackers with toppings, choose your heat.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img src="../image/cilok.jpeg" alt="Cilok" />
+            <div class="food-card-content">
+              <h3>Cilok</h3>
+              <p>Chewy tapioca balls; simple, iconic street snack.</p>
+            </div>
+          </article>
+
+          <article class="food-card">
+            <img src="../image/peyeum.jpeg" alt="Peuyeum" />
+            <div class="food-card-content">
+              <h3>Peuyeum</h3>
+              <p>Fermented cassava sweet and aromatic.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <script>
+      // observer untuk memicu animasi saat section local food masuk viewport
+      (function () {
+        const section = document.querySelector(".food-scroll");
+        if (!section) return;
+
+        // atur indeks untuk stagger (CSS var --i)
+        const cards = section.querySelectorAll(".food-card");
+        cards.forEach((card, i) => card.style.setProperty("--i", i));
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // munculkan section + jalankan marquee
+                section.classList.add("in", "play");
+                // setelah terlihat, tak perlu observe lagi
+                io.unobserve(section);
+              }
+            });
+          },
+          { threshold: 0.18 }
+        ); // mulai saat ~18% terlihat
+
+        io.observe(section);
+      })();
+    </script>
+
+    <footer>Quiz 1 Web Programming © 2025</footer>
+  </body>
+</html>

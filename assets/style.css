@@ -1,0 +1,681 @@
+/* ========= Minimal Bandung Theme (Dark, Clean) ========= */
+:root {
+  --bg: #0d1117;
+  --card: #161b22;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --border: #30363d;
+  --brand: #58a6ff;
+  --accent: #a3abb4;
+  --radius: 16px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Inter, Arial;
+  line-height: 1.65;
+}
+
+/* ===== Container ===== */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ===== HEADER / NAV ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  border: 0;
+  box-shadow: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(22, 27, 34, 0.9) 0%,
+    rgba(22, 27, 34, 0.55) 50%,
+    rgba(22, 27, 34, 0) 100%
+  );
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+}
+.brand-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+}
+.brand-title {
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav a {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  background: transparent;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+nav a:hover {
+  background: #0f141b;
+  border-color: var(--border);
+}
+nav a.active {
+  background: #1c477000;
+  border-color: #1679c5;
+  color: #e6f0f8;
+}
+/* fallback jika masih ada class .btn pada <a> lama */
+nav a.btn {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  background: transparent;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+/* ===== Spacer agar konten tidak nempel navbar (pakai setelah </header>) ===== */
+.nav-spacer {
+  height: 72px;
+}
+@media (max-width: 700px) {
+  .nav-spacer {
+    height: 60px;
+  }
+}
+
+/* ===== FULLSCREEN HERO ===== */
+.hero-viewport {
+  position: relative;
+  height: 100svh;
+  width: 100vw;
+  margin: 0;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;
+}
+.hero-viewport img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.95) contrast(1.05);
+  transform: scale(1.06);
+  opacity: 0;
+  animation: heroZoom 1200ms var(--ease) 120ms forwards;
+}
+@keyframes heroZoom {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hero-viewport::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.45) 45%,
+    rgba(13, 17, 23, 0.9) 85%,
+    rgba(13, 17, 23, 1) 100%
+  );
+}
+.hero-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 1;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  font-size: clamp(44px, 8vw, 96px);
+  text-shadow: 0 10px 36px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  translate: 0 12px;
+  animation: titleIn 800ms var(--ease) 180ms forwards;
+}
+@keyframes titleIn {
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* ===== Cards di bawah hero (jika dipakai) ===== */
+.cards-over-hero {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: clamp(-120px, -12vw, -80px) auto 48px;
+  padding: 0 24px;
+}
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+/* ===== Cards & misc ===== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  animation: cardIn 700ms var(--ease) forwards;
+}
+.cards-over-hero .card:nth-child(1) {
+  animation-delay: 120ms;
+}
+.cards-over-hero .card:nth-child(2) {
+  animation-delay: 240ms;
+}
+.cards-over-hero .card:nth-child(3) {
+  animation-delay: 360ms;
+}
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.card h3 {
+  margin: 0.2rem 0 0.5rem;
+}
+.card p {
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  background: var(--brand);
+  color: #fff;
+  transition: 0.25s var(--ease);
+}
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 48, 73, 0.18);
+}
+.button.secondary {
+  background: transparent;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--accent);
+  letter-spacing: 0.3px;
+}
+
+/* ===== Optional hero text ===== */
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
+  align-items: center;
+  padding: 36px 24px;
+}
+.hero h1 {
+  margin: 0.2rem 0 0.4rem;
+  font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.15;
+}
+.lead {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+/* ===== Breadcrumbs ===== */
+.breadcrumbs {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 8px 0 12px;
+}
+.breadcrumbs a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+/* ===== Profile ===== */
+.profile-header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+.profile-avatar {
+  width: 180px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid var(--accent);
+  background: #0f141b;
+  box-shadow: var(--shadow);
+}
+.profile-meta h2 {
+  margin: 0.2rem 0 0.3rem;
+}
+.profile-meta p {
+  margin: 0;
+  color: var(--muted);
+}
+.quote {
+  background: #1f242c;
+  color: var(--muted);
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin-top: 0.6rem;
+}
+
+/* ===== Footer ===== */
+footer {
+  padding: 28px 24px;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+/* ===== Reveal helper ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.reveal.show {
+  animation: revealIn 700ms var(--ease) forwards;
+}
+@keyframes revealIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ===== Hometown feature ===== */
+.feature {
+  max-width: 1100px;
+  margin: 18px auto 0;
+  padding: 0 24px;
+}
+.feature-media {
+  margin: 0 0 32px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: #0f141b;
+}
+.feature-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  filter: saturate(0.98) contrast(1.02);
+}
+.feature-media figcaption {
+  padding: 16px 14px 0;
+}
+.feature-media h2 {
+  margin: 0 0 6px;
+}
+.feature-media .lead {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ===================== LOCAL FOOD ===================== */
+/* base card */
+.food-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.food-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+}
+.food-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  object-position: center 60%;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+.food-card-content {
+  padding: 14px 16px;
+}
+.food-card h3 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+.food-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* grid (jika dipakai) */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* marquee horizontal */
+.food-scroll {
+  overflow: hidden;
+  position: relative;
+  padding-block: 8px;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+.food-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: food-marquee 38s linear infinite;
+}
+.food-scroll:hover .food-track {
+  animation-play-state: paused;
+}
+@keyframes food-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* spacing khusus halaman food */
+.page-food .nav-spacer {
+  height: 72px;
+}
+.page-food .food-scroll,
+.page-food .food-grid {
+  margin-top: 12px;
+}
+
+/* ===================== TOURIST PLACES ===================== */
+.marquee {
+  overflow: hidden;
+  position: relative;
+  padding-block: 8px;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+.marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: marqueeLeft 38s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marqueeLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.place-card {
+  flex: 0 0 300px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.place-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+}
+.place-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid var(--border);
+  /* object-position:center 60%; */ /* aktifkan jika ingin “menurunkan” fokus */
+}
+.place-card-content {
+  padding: 16px;
+}
+.place-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+.place-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 700px) {
+  .profile-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .profile-avatar {
+    margin: 0 auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  .food-track,
+  .marquee-track {
+    animation: none !important;
+  }
+}
+/* --- Masuk halus untuk section Local Food --- */
+.food-scroll {
+  opacity: 0;
+  transform: translateY(14px) scale(0.985);
+  filter: blur(6px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease),
+    filter 0.7s var(--ease);
+}
+
+/* ketika terlihat di viewport */
+.food-scroll.in {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* marquee tidak jalan sampai section terlihat */
+.food-track {
+  animation-play-state: paused;
+}
+.food-scroll.play .food-track {
+  animation-play-state: running;
+}
+
+/* stagger tiap card (muncul berurutan halus) */
+.food-card {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transition-delay: calc(var(--i, 0) * 90ms); /* 90ms antar kartu */
+}
+.food-scroll.in .food-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* hormati preferensi pengguna */
+@media (prefers-reduced-motion: reduce) {
+  .food-scroll,
+  .food-card {
+    transition: none !important;
+  }
+  .food-track {
+    animation: none !important;
+  }
+}
+/* --- Smooth enter untuk Tourist Places --- */
+.marquee {
+  opacity: 0;
+  transform: translateY(14px) scale(0.985);
+  filter: blur(6px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease),
+    filter 0.7s var(--ease);
+}
+
+/* ketika terlihat di viewport */
+.marquee.in {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* marquee berhenti dulu sampai terlihat */
+.marquee-track {
+  animation-play-state: paused;
+}
+.marquee.play .marquee-track {
+  animation-play-state: running;
+}
+
+/* Stagger setiap kartu tempat (muncul berurutan) */
+.place-card {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transition-delay: calc(var(--i, 0) * 90ms); /* 90ms jeda antar kartu */
+}
+.marquee.in .place-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hormati prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee,
+  .place-card {
+    transition: none !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}

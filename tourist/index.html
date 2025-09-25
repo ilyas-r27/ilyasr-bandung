@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tourist Places — Bandung</title>
+    <link rel="stylesheet" href="../assets/style.css" />
+  </head>
+  <body class="page-tourist">
+    <!-- HEADER -->
+    <header>
+      <div class="nav">
+        <a class="brand" href="../index.html">
+          <div class="brand-logo"></div>
+          <span class="brand-title">Muhammad Ilyas Rusdi · 5025241007</span>
+        </a>
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../profile/index.html">Profile</a></li>
+            <li><a href="../hometown/index.html">Hometown</a></li>
+            <li><a href="../food/index.html">Local Food</a></li>
+            <li>
+              <a href="../tourist/index.html" class="active">Tourist Places</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Spacer khusus halaman ini -->
+    <div class="nav-spacer"></div>
+
+    <main class="container">
+      <div class="breadcrumbs">
+        <a href="../index.html">Home</a> / Tourist Places
+      </div>
+
+      <!-- Marquee satu baris horizontal -->
+      <section class="marquee">
+        <div class="marquee-track">
+          <!-- SET 1 -->
+          <article class="place-card">
+            <img src="../image/kawah putij.jpeg" alt="Kawah Putih" />
+            <div class="place-card-content">
+              <h3>Kawah Putih</h3>
+              <p>Milky-turquoise crater lake in Ciwidey—surreal scenery.</p>
+            </div>
+          </article>
+
+          <article class="place-card">
+            <img src="../image/tangkuban perahu.jpeg" alt="Tangkuban Parahu" />
+            <div class="place-card-content">
+              <h3>Tangkuban Parahu</h3>
+              <p>Iconic volcano with accessible viewpoints.</p>
+            </div>
+          </article>
+
+          <article class="place-card">
+            <img src="../image/jalan braga.jpeg" alt="Jalan Braga" />
+            <div class="place-card-content">
+              <h3>Jalan Braga</h3>
+              <p>Heritage art-deco street, cafés, and galleries.</p>
+            </div>
+          </article>
+
+          <article class="place-card">
+            <img src="../image/tebing keraton.jpeg" alt="Tebing Keraton" />
+            <div class="place-card-content">
+              <h3>Tebing Keraton</h3>
+              <p>Pine forest ridges—popular sunrise lookout.</p>
+            </div>
+          </article>
+
+          <article class="place-card">
+            <img src="../image/farmhouse.jpeg" alt="Farmhouse Lembang" />
+            <div class="place-card-content">
+              <h3>Farmhouse Lembang</h3>
+              <p>Family-friendly, European-themed photo spots.</p>
+            </div>
+          </article>
+
+          <article class="place-card">
+            <img src="../image/dusun bambu.jpeg" alt="Dusun Bambu" />
+            <div class="place-card-content">
+              <h3>Dusun Bambu</h3>
+              <p>Nature leisure, lake, and culinary corners.</p>
+            </div>
+          </article>
+
+          <!-- SET 2 (duplikasi agar loop mulus) -->
+          <article class="place-card">
+            <img src="../image/kawah putij.jpeg" alt="Kawah Putih" />
+            <div class="place-card-content">
+              <h3>Kawah Putih</h3>
+              <p>Milky-turquoise crater lake in Ciwidey—surreal scenery.</p>
+            </div>
+          </article>
+
+          <article class="place-card">
+            <img src="../image/tangkuban perahu.jpeg" alt="Tangkuban Parahu" />
+            <div class="place-card-content">
+              <h3>Tangkuban Parahu</h3>
+              <p>Iconic volcano with accessible viewpoints.</p>
+            </div>
+          </article>
+
+          <article class="place-card">
+            <img src="../image/jalan braga.jpeg" alt="Jalan Braga" />
+            <div class="place-card-content">
+              <h3>Jalan Braga</h3>
+              <p>Heritage art-deco street, cafés, and galleries.</p>
+            </div>
+          </article>
+
+          <article class="place-card">
+            <img src="../image/tebing keraton.jpeg" alt="Tebing Keraton" />
+            <div class="place-card-content">
+              <h3>Tebing Keraton</h3>
+              <p>Pine forest ridges—popular sunrise lookout.</p>
+            </div>
+          </article>
+
+          <article class="place-card">
+            <img src="../image/farmhouse.jpeg" alt="Farmhouse Lembang" />
+            <div class="place-card-content">
+              <h3>Farmhouse Lembang</h3>
+              <p>Family-friendly, European-themed photo spots.</p>
+            </div>
+          </article>
+
+          <article class="place-card">
+            <img src="../image/dusun bambu.jpeg" alt="Dusun Bambu" />
+            <div class="place-card-content">
+              <h3>Dusun Bambu</h3>
+              <p>Nature leisure, lake, and culinary corners.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <script>
+      (function () {
+        const section = document.querySelector(".marquee");
+        if (!section) return;
+
+        // set indeks untuk efek stagger via CSS var --i
+        const cards = section.querySelectorAll(".place-card");
+        cards.forEach((card, i) => card.style.setProperty("--i", i));
+
+        // observer: mulai animasi saat bagian Tourist terlihat
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                section.classList.add("in", "play"); // fade-in + jalankan marquee
+                io.unobserve(section);
+              }
+            });
+          },
+          { threshold: 0.18 }
+        );
+
+        io.observe(section);
+      })();
+    </script>
+
+    <footer>© 2025 · Tourist Guide</footer>
+  </body>
+</html>
